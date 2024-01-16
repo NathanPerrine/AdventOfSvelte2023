@@ -34,32 +34,34 @@
 	$: sortedList = data.people.slice();
 </script>
 
-<section class="py-20 max-h-[75%]">
-	<div class="flex flex-col overflow-x-scroll overflow-y-scroll max-w-[800px] mx-auto w-full max-h-[75%]">
-		<table class="table table-zebra  border">
-			<thead>
+<section class="py-20">
+
+
+	<div class="max-w-[800px] h-[75vh] overflow-y-auto mx-auto border-2 border-accent rounded-md">
+		<table class="table table-zebra">
+			<thead class="sticky top-0 z-[1] bg-base-300">
 				<tr class="text-lg">
 					<th>#</th>
 					<th>Name</th>
-					<th>Tally <button class="btn btn-sm btn-outline btn-accent" on:click={sortList}>
+					<th>Tally <button class="btn btn-sm btn-outline btn-accent-content" on:click={sortList}>
 							<Icon icon="pixelarticons:sort" />
 						</button>
 					</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="">
 				{#each sortedList as person, i}
-					<tr class="hover text-lg border-none">
+					<tr class="hover text-lg">
 						<th>{i + 1}</th>
 						<td>{person.name}</td>
 						<td class="flex items-center">
 							<div class="px-2">
 								{#if person.tally > 0}
-									<Icon icon="pixelarticons:mood-happy" width="24" class="text-green-300" />
+									<Icon icon="pixelarticons:mood-happy" width="24" class="text-success" />
 								{:else if person.tally == 0}
 									<Icon icon="pixelarticons:mood-neutral" width="24" />
 								{:else}
-									<Icon icon="pixelarticons:mood-sad" width="24" class="text-red-300" />
+									<Icon icon="pixelarticons:mood-sad" width="24" class="text-error" />
 								{/if}
 							</div>
 
@@ -70,4 +72,6 @@
 			</tbody>
 		</table>
 	</div>
+
+
 </section>
