@@ -1,5 +1,3 @@
-import type { PageServerLoad } from './$types';
-
 interface PersonObj {
   name: string
   tally: number
@@ -22,4 +20,4 @@ export const load = (async ({ fetch }) => {
     people
   }
 
-}) satisfies PageServerLoad;
+})

@@ -4,8 +4,6 @@
 	export let data;
 	let sortCount: number = 0;
 
-	// function sort(a: number, b: number, type: string)
-
 	function sortList() {
 		switch (sortCount) {
 			case 0:
@@ -36,10 +34,9 @@
 
 <section class="py-20">
 
-
 	<div class="max-w-[800px] h-[75vh] overflow-y-auto mx-auto border-2 border-accent rounded-md">
 		<table class="table table-zebra">
-			<thead class="sticky top-0 z-[1] bg-base-300">
+			<thead class="sticky top-0 bg-base-300">
 				<tr class="text-lg">
 					<th>#</th>
 					<th>Name</th>
