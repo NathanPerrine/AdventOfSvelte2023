@@ -10,6 +10,7 @@ export default {
       "garden",
       "sunset"
     ],
+    darkTheme: 'sunset'
   }
 }
 
