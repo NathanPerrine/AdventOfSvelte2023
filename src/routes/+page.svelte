@@ -1,8 +1,40 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import PersonCard from '$lib/components/day1/PersonCard.svelte';
 
 	export let data;
 	let sortCount: number = 0;
+
+  // let goodPerson =
+  // [
+  //   {
+  //     name: 'Vivi',
+  //     tally: 100,
+  //   },
+  //   {
+  //     name: 'Vivi',
+  //     tally: 100,
+  //   },
+  //   {
+  //     name: 'Vivi',
+  //     tally: 100,
+  //   }
+  // ]
+
+  let group = data.people.reduce(
+  (result:any, currentValue:any) => {
+    (result[currentValue['tally']] = result[currentValue['tally']] || []).push(currentValue);
+    return result;
+  }, {});
+
+  const minTally = Math.min(...Object.keys(group).map(Number))
+  const maxTally = Math.max(...Object.keys(group).map(Number))
+
+  let goodestPeople = group[maxTally]
+  let baddestPeople = group[minTally]
+
+  console.log(goodestPeople)
+
 
 	function sortList() {
 		switch (sortCount) {
@@ -31,6 +63,13 @@
 
 	$: sortedList = data.people.slice();
 </script>
+
+<div class="flex md:flex-row  flex-col justify-center md:space-x-4 p-4">
+  <!-- <PersonCard people={goodPerson} goodOrBad={'good'} /> -->
+  <PersonCard people={goodestPeople} goodOrBad={'good'} />
+  <PersonCard people={baddestPeople} goodOrBad={'bad'} />
+
+</div>
 
 <section class="py-20">
 

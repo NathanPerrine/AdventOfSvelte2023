@@ -7,7 +7,7 @@ export default {
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
-      "garden",
+      "winter",
       "sunset"
     ],
     darkTheme: 'sunset'

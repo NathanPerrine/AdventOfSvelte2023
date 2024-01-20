@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 
   function toggleTheme() {
-    $theme === 'sunset' ? theme.set('garden') : theme.set('sunset')
+    $theme === 'sunset' ? theme.set('winter') : theme.set('sunset')
   }
 
   // true = sun, false = moon

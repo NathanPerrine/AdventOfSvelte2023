@@ -1,4 +1,5 @@
-interface PersonObj {
+
+export type PersonObj = {
   name: string
   tally: number
 }
