@@ -5,7 +5,7 @@
   export let goodOrBad : string
 </script>
 
-<div class={"card md:w-96 w-48 mt-4 md:mt-0 bg-base-200 text-base-content border " +
+<div class={"card md:w-96 w-48 mt-4 md:mt-0 mx-1 bg-base-200 text-base-content border " +
   (goodOrBad == 'good'
     ? 'border-success'
     : 'border-error')}

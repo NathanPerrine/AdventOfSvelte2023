@@ -48,10 +48,9 @@
 	$: sortedList = data.people.slice();
 </script>
 
-<div class="flex md:flex-row  flex-col justify-center  md:space-x-4 p-4">
+<div class="flex flex-row justify-center md:space-x-4 p-4">
   <PersonCard people={goodestPeople} goodOrBad={'good'} />
   <PersonCard people={baddestPeople} goodOrBad={'bad'} />
-
 </div>
 
 <section class="py-10 mx-4">
