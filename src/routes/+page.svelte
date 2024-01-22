@@ -5,22 +5,6 @@
 	export let data;
 	let sortCount: number = 0;
 
-  // let goodPerson =
-  // [
-  //   {
-  //     name: 'Vivi',
-  //     tally: 100,
-  //   },
-  //   {
-  //     name: 'Vivi',
-  //     tally: 100,
-  //   },
-  //   {
-  //     name: 'Vivi',
-  //     tally: 100,
-  //   }
-  // ]
-
   let group = data.people.reduce(
   (result:any, currentValue:any) => {
     (result[currentValue['tally']] = result[currentValue['tally']] || []).push(currentValue);
@@ -64,15 +48,14 @@
 	$: sortedList = data.people.slice();
 </script>
 
-<div class="flex md:flex-row  flex-col justify-center md:space-x-4 p-4">
-  <!-- <PersonCard people={goodPerson} goodOrBad={'good'} /> -->
+<div class="flex md:flex-row  flex-col justify-center  md:space-x-4 p-4">
   <PersonCard people={goodestPeople} goodOrBad={'good'} />
   <PersonCard people={baddestPeople} goodOrBad={'bad'} />
 
 </div>
 
-<section class="py-20">
-
+<section class="py-10 mx-4">
+<h1 class="text-4xl mb-4 font-extrabold text-center">Santa's List</h1>
 	<div class="max-w-[800px] h-[75vh] overflow-y-auto mx-auto border-2 border-accent rounded-md">
 		<table class="table table-zebra">
 			<thead class="sticky top-0 bg-base-300">
