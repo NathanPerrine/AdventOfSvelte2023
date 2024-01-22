@@ -21,13 +21,13 @@
 
 </script>
 <header>
-  <div class="navbar bg-base-100">
+  <div class="navbar fixed top-0 z-10 h-14 border-b-2 border-accent backdrop-blur bg-base-100/50">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
         </div>
-        <button class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <button class="menu menu-sm border border-accent dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li><a href="https://github.com/NathanPerrine/AdventOfSvelte2023" target="_blank"><Icon icon="jam:github" width="24" /></a></li>
           <li>
             <a href="/">Days</a>
@@ -47,7 +47,7 @@
         <li>
           <details>
             <summary>Days</summary>
-            <ul class="p-2">
+            <ul class="p-2 border border-accent">
               {#each days as day}
                 <li><a href="{day.href}">{day.day}</a></li>
               {/each}
