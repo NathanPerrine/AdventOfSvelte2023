@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PageData } from './../$types';
-  import { slide } from 'svelte/transition';
+  import { slide, fly } from 'svelte/transition';
+  import Icon from '@iconify/svelte';
   import cookie1 from '$lib/images/cookies/cookie1.svg'
   import cookie2 from '$lib/images/cookies/cookie2.svg'
   import cookie3 from '$lib/images/cookies/cookie3.svg'
@@ -21,10 +22,6 @@
   function reset() {
     count = 0;
   }
-
-
-
-
 </script>
 
 <h2 class="text-2xl font-bold m-4 text-center">Santas Cookie counter</h2>
@@ -40,9 +37,17 @@
   <button class="w-8 mx-2 btn btn-accent btn-sm" on:click={reset}>0</button>
 </div>
 
+<div class="flex items-center justify-center pt-4">
+  {#if count > 4}
+    <Icon icon="pixelarticons:mood-happy" width="36" class="text-success" />
+  {:else}
+    <Icon icon="pixelarticons:mood-neutral" width="36" />
+  {/if}
+</div>
+
 <!-- cookie contianer -->
 <div class="w-11/12 max-w-4xl border border-accent flex flex-wrap content-start mt-4 h-[33vh] mx-auto overflow-auto p-4">
   {#each {length: count} as _, i}
-    <img src={cookies[Math.floor(Math.random()*cookies.length)]} alt="cookie" class="w-12 h-12 m-2" />
+    <img transition:fly={{y: 100}} src={cookies[Math.floor(Math.random()*cookies.length)]} alt="cookie" class="w-12 h-12 m-2" />
   {/each}
 </div>
