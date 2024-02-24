@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { crossfade } from 'svelte/transition';
+	import { crossfade, fade, fly } from 'svelte/transition';
   import type { PageData } from './$types';
   import type { PersonPresentObj } from './+page';
 	import { quintOut } from 'svelte/easing';
@@ -100,11 +100,23 @@
     }
 
     function sendIt() {
-      inSleigh.forEach(sleighPerson => {
-        data.people = data.people.filter((person) => person.id != sleighPerson.id)
-      });
+      transitionToggle = !transitionToggle
+      setTimeout(() => {
+        inSleigh.forEach(sleighPerson => {
+          data.people = data.people.filter((person) => person.id != sleighPerson.id)
+        });
+        toggleBack()
+      }, 10)
+
+      function toggleBack() {
+        setTimeout(() => {
+          console.log('toggleback')
+          transitionToggle = !transitionToggle
+        }, 10)
+      }
     }
 
+    $: transitionToggle = false
 </script>
 
 <div class="w-11/12 h-[90vh] mx-auto mt-12 flex gap-8 justify-center">
@@ -122,7 +134,6 @@
     <div class="min-h-32">
       <h2 class="text-2xl font-bold text-center">Unsorted</h2>
       <p>Remaining weight: {unsortedWeight.toFixed(2)} kg</p>
-      <p>Status: </p>
     </div>
     <div class="divider divider-primary"></div>
     <div class="w-full flex flex-col flex-1 items-center overflow-auto">
@@ -170,6 +181,7 @@
     </div>
     <div class="divider divider-primary"></div>
     <div class="w-full flex flex-col flex-1 items-center overflow-auto">
+      {#if !transitionToggle}
       {#each inSleigh as person, i (person.id)}
       <div draggable="true" on:drag={getDragginginSleigh} role="listitem" data-id={person.id} class="card w-48 bg-base-200 shadow-xl border border-accent my-4 cursor-pointer"
       in:receive={{ key: person }}
@@ -182,6 +194,20 @@
         </div>
       </div>
       {/each}
+      {:else}
+      {#each inSleigh as person, i (person.id)}
+      <div draggable="true" on:drag={getDragginginSleigh} role="listitem" data-id={person.id} class="card w-48 bg-base-200 shadow-xl border border-accent my-4 cursor-pointer"
+      in:receive={{ key: person }}
+      out:fly={{ x: 100, y: -150, delay: i*150 }}
+      animate:flip
+      >
+        <div class="card-body p-4">
+          <h2 class="card-title">{person.name}</h2>
+          <p>Present weight: {person.weight}</p>
+        </div>
+      </div>
+      {/each}
+      {/if}
     </div>
   </div>
 
