@@ -17,9 +17,6 @@
   let goodestPeople = group[maxTally]
   let baddestPeople = group[minTally]
 
-  console.log(goodestPeople)
-
-
 	function sortList() {
 		switch (sortCount) {
 			case 0:
@@ -42,7 +39,6 @@
 				sortCount = 0;
 				break;
 		}
-		console.log(sortedList);
 	}
 
 	$: sortedList = data.people.slice();
@@ -84,7 +80,6 @@
 									<Icon icon="pixelarticons:mood-sad" width="24" class="text-error" />
 								{/if}
 							</div>
-
 							{person.tally}
 						</td>
 					</tr>
@@ -92,6 +87,4 @@
 			</tbody>
 		</table>
 	</div>
-
-
 </section>
