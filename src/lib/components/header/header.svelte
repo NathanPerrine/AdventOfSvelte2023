@@ -15,10 +15,11 @@
   })
 
   const days = [
-    {day: 'Day 1', href: '/'},
+    {day: 'Day 1', href: '/day1'},
     {day: 'Day 2', href: '/day2'},
     {day: 'Day 3', href: '/day3'},
-    {day: 'Day 4', href: '/day4'}
+    {day: 'Day 4', href: '/day4'},
+    {day: 'Day 5', href: '/day5'}
   ]
 
 </script>

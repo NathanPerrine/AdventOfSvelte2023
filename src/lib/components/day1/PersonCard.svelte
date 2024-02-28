@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PersonObj } from "../../../routes/+page.server";
+	import type { PersonObj } from "../../../routes/day1/+page.server";
 
   export let people : PersonObj[]
   export let goodOrBad : string
