@@ -1,0 +1,112 @@
+[
+  {
+    "day": "Day 1",
+    "href": "/day1",
+    "title": "Naughty or Nice",
+    "description": "A system to track and organize the naughty and nice deed children have done.",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 2",
+    "href": "/day2",
+    "title": "Merry Munch-o-Meter",
+    "description": "A cookie counter to help Santa track his cookie intake and display his current mood (based on cookies consumed).",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 3",
+    "href": "/day3",
+    "title": "Jingle Bell Balancer",
+    "description": "Creating a Sleigh Load Balancer: a system that lets Santa balance out his sleigh load to minimize the trips needed.",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 4",
+    "href": "/day4",
+    "title": "Heart of Christmas",
+    "description": "A heart rate monitor for Santa, constantly gathering his current heart rate from an API and display the information to the elves.",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 5",
+    "href": "/day5",
+    "title": "Present Progress",
+    "description": "A dashboard that displays information on each elf and their productivity.",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 6",
+    "href": "/day6",
+    "title": "Mistletoe Metronome",
+    "description": "A BPM counter that helps elfs tap along to their favorite songs.",
+    "progress": {
+      "code": 10,
+      "styling-desktop": 5,
+      "styling-mobile": 0
+    }
+  },
+  {
+    "day": "Day 7",
+    "href": "/day7",
+    "title": "Morse Mischief",
+    "description": "A morse code translator to help Santa communicate.",
+    "progress": {
+      "code": 0,
+      "styling-desktop": 0,
+      "styling-mobile": 0
+    }
+  },
+  {
+    "day": "Day 8",
+    "href": "/day8",
+    "title": "Santa's Mysterious Deck of Doubles",
+    "description": "Santa's Favorite Card Game",
+    "progress": {
+      "code": 0,
+      "styling-desktop": 0,
+      "styling-mobile": 0
+    }
+  },
+  {
+    "day": "Day 9",
+    "href": "/day9",
+    "title": "Santa's Final Countdown",
+    "description": "A countdown timer to midnight on Christmas Eve",
+    "progress": {
+      "code": 0,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 10",
+    "href": "/day10",
+    "title": "Pop-up! Spreading the holiday cheer",
+    "description": "A pop up message from Santa wishing holiday cheer.",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  }
+]

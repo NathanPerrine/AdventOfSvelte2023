@@ -2,6 +2,7 @@
   import Icon from '@iconify/svelte';
   import theme from '$lib/shared/stores/themes';
 	import { onMount } from 'svelte';
+  import days from '$lib/shared/stores/days.json'
 
   function toggleTheme() {
     $theme === 'sunset' ? theme.set('winter') : theme.set('sunset')
@@ -13,16 +14,6 @@
   onMount(async () => {
     $theme ==='sunset' ? themeCheck = false : true;
   })
-
-  const days = [
-    {day: 'Day 1', href: '/day1'},
-    {day: 'Day 2', href: '/day2'},
-    {day: 'Day 3', href: '/day3'},
-    {day: 'Day 4', href: '/day4'},
-    {day: 'Day 5', href: '/day5'},
-    {day: 'Day 6', href: '/day6'}
-  ]
-
 </script>
 <header>
   <div class="navbar fixed top-0 z-10 h-14 border-b-2 border-accent backdrop-blur bg-base-100/50">
