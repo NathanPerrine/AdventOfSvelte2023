@@ -4,6 +4,7 @@
 	import { crossfade } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import Icon from '@iconify/svelte';
+	import Title from '$lib/components/Title.svelte';
 	export let data: PageData;
 
 	const [send, receive] = crossfade({ duration: 500, easing: cubicInOut });
@@ -115,15 +116,12 @@
 	}
 </script>
 
-<main class="max-w-7xl mx-auto">
+<section class="max-w-7xl mx-auto">
 	<!-- Title -->
-	<section id="title" class="mt-4 px-4">
-		<h1 class="text-3xl font-bold">Day 5: Present Progress</h1>
-		<p>An interactive dashboard to track productivity by elf.</p>
-	</section>
+	<Title day={5} />
 
 	<!-- Main -->
-	<section class="w-full mt-8 mx-auto flex flex-wrap justify-between sm:justify-start">
+	<main class="w-full mt-8 mx-auto flex flex-wrap justify-between sm:justify-start">
 		<div class="w-full flex flex-wrap justify-around mb-4">
 			<input
 				bind:value={searchString}
@@ -204,5 +202,5 @@
 				</div>
 			</div>
 		{/each}
-	</section>
-</main>
+  </main>
+</section>
