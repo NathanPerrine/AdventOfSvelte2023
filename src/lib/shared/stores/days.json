@@ -60,20 +60,20 @@
     "title": "Mistletoe Metronome",
     "description": "A BPM counter that helps elfs tap along to their favorite songs.",
     "progress": {
-      "code": 10,
-      "styling-desktop": 5,
-      "styling-mobile": 0
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
     }
   },
   {
     "day": "Day 7",
     "href": "/day7",
     "title": "Morse Mischief",
-    "description": "A morse code translator to help Santa communicate.",
+    "description": "A morse code translator to help Santa communicate over long distance with his top reindeer trainer.",
     "progress": {
-      "code": 0,
-      "styling-desktop": 0,
-      "styling-mobile": 0
+      "code": 75,
+      "styling-desktop": 100,
+      "styling-mobile": 100
     }
   },
   {

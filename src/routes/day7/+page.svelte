@@ -1,0 +1,75 @@
+<script lang="ts">
+	import Title from '$lib/components/Title.svelte';
+	import Icon from '@iconify/svelte';
+
+  // Alternate morse code translation types
+  // 1) char.charCodeAt(0)-97 - gives the number value (a = 0, b = 1, etc) for a character, you can use that to refernce an array of morse code values to construct the sentence. Downside: outside of general english alphabet it falls apart, needing other arrays and logic to handle alternate characters, even numbers.
+
+  // const morseCodeArray =[
+  //   '.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....',
+  //   '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.',
+  //   '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-',
+  //   '-.--', '--..'
+  // ];
+  // const morseCodeNumbers = [
+  //   '-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.'
+  // ]
+
+  // 2) Morse code object, where every key is a character and the value is that characters morse code equivalent. Downside: Hard to get the key by value, have to use something like the following function.
+  // function getKeyByValue(object, value) {
+    // return Object.keys(object).find(key => object[key] === value);
+  // }
+  // console.log(getKeyByValue(morseCode, '.-'))
+
+  // 3) Array of tuples: [['a', ',-'], etc], easy to add to, but have to loop through the array for every character.
+
+
+  interface morseCodeInterface { [index: string]: string}
+  const morseCode: morseCodeInterface = {
+    'a': '.-', 'b': '-...',  'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',  'g': '--.',  'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..', 'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.', 's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-', 'y': '-.--', 'z': '--..',
+    '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----',
+    ' ': ' ', '?': '..--..', '!': '-.-.--', '.': '.-.-.-', ',':'--..--', ';': '-.-.-.', ':': '---...', '+': '.-.-.', '-': '-....-', '/': '-..-.', '=': '-...-'
+  }
+
+
+  let userSentence: string
+  let morseCodeOutput: string = ''
+
+  function updateMorseCode(){
+    morseCodeOutput = ''
+    for (const char of userSentence) {
+      morseCodeOutput += morseCode[char.toLowerCase()] + ' ';
+    }
+  }
+
+  function play() {
+    console.log('play');
+  }
+  function stop() {
+    console.log('stop');
+  }
+</script>
+
+<section>
+	<!-- Title -->
+	<Title day={7} />
+
+  <main class="mt-4">
+    <div class="w-11/12 sm:w-1/2 p-4 border border-primary rounded-md mx-auto flex flex-col">
+      <h2 class="text-xl">Enter your message below:</h2>
+      <input type="text" placeholder="Close the gate" bind:value={userSentence} on:input={updateMorseCode} class="my-2 input input-bordered w-full max-w-xs" />
+      <div class="divider divider-accent divider-start">Output &darr;</div>
+      <p class="text-xl">
+        {#if morseCodeOutput == ''}
+          Enter a sentence above to translate it into morse code!
+        {:else}
+          {morseCodeOutput}
+        {/if}
+      </p>
+      <div class="flex flex-wrap">
+        <button class="btn btn-sm btn-success m-2" on:click={play}>Play <Icon icon="bx:play" width="24px" /> </button>
+        <button class="btn btn-sm btn-warning m-2" on:click={stop}>Stop <Icon icon="icomoon-free:stop" width="24px" /> </button>
+      </div>
+    </div>
+  </main>
+</section>
