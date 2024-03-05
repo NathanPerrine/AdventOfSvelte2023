@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Title from '$lib/components/Title.svelte';
 	import Icon from '@iconify/svelte';
+	import { SvelteComponentTyped, onMount } from 'svelte';
 
   // Alternate morse code translation types
   // 1) char.charCodeAt(0)-97 - gives the number value (a = 0, b = 1, etc) for a character, you can use that to refernce an array of morse code values to construct the sentence. Downside: outside of general english alphabet it falls apart, needing other arrays and logic to handle alternate characters, even numbers.
@@ -38,15 +39,82 @@
   function updateMorseCode(){
     morseCodeOutput = ''
     for (const char of userSentence) {
-      morseCodeOutput += morseCode[char.toLowerCase()] + ' ';
+      if (char != ' '){
+        morseCodeOutput += morseCode[char.toLowerCase()] + ' ';
+      } else morseCodeOutput += ' ';
     }
   }
 
-  function play() {
-    console.log('play');
+  const FREQUENCY = 440;
+  const DOT_TIME = 60;
+  const LETTER_BREAK = DOT_TIME * 3;
+  const WORD_BREAK = DOT_TIME * 10;
+  let note_context: AudioContext;
+  let note_node: OscillatorNode;
+  let gain_node: GainNode;
+  let audioContextInitialized = false;
+  let stopBeeps = false;
+
+  function initializeAudioContext() {
+    note_context = new AudioContext();
+    audioContextInitialized = true;
+  }
+
+  onMount(() => {
+    initializeAudioContext()
+  })
+
+  function sleep(ms:number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function startNote() {
+    if (audioContextInitialized) {
+      note_node = note_context.createOscillator();
+      gain_node = note_context.createGain();
+      note_node.frequency.value = parseInt(FREQUENCY.toFixed(2));
+      gain_node.gain.value = 0;
+      note_node.connect(gain_node);
+      gain_node.connect(note_context.destination);
+      note_node.start();
+    }
+    gain_node.gain.setTargetAtTime(0.1, 0, 0.001)
+  }
+  function stopNote() {
+    gain_node.gain.setTargetAtTime(0, 0, 0.001)
+  }
+  async function playBeep(dotDash: string){
+    startNote();
+    if (dotDash === 'dot'){
+      await sleep(DOT_TIME);
+    } else if (dotDash === 'dash'){
+      await sleep(DOT_TIME * 3)
+    }
+    stopNote();
+    await sleep(LETTER_BREAK)
+  }
+
+  async function play() {
+    stopBeeps = false
+    for (const char of morseCodeOutput){
+      if (!stopBeeps){
+        if (char === '.') {
+          await playBeep('dot')
+        } else if (char === '-'){
+          await playBeep('dash')
+        } else if (char === ' ') {
+          await sleep(WORD_BREAK)
+        }
+      } else {
+        stopBeeps = false
+        break;
+      }
+    }
+
+
   }
   function stop() {
-    console.log('stop');
+    stopBeeps = true
   }
 </script>
 
@@ -66,10 +134,14 @@
           {morseCodeOutput}
         {/if}
       </p>
-      <div class="flex flex-wrap">
-        <button class="btn btn-sm btn-success m-2" on:click={play}>Play <Icon icon="bx:play" width="24px" /> </button>
-        <button class="btn btn-sm btn-warning m-2" on:click={stop}>Stop <Icon icon="icomoon-free:stop" width="24px" /> </button>
-      </div>
+      {#if audioContextInitialized}
+        <div class="flex flex-wrap">
+          <button class="btn btn-sm btn-success m-2" on:click={play}>Play <Icon icon="bx:play" width="24px" /> </button>
+          <button class="btn btn-sm btn-warning m-2" on:click={stop}>Stop <Icon icon="icomoon-free:stop" width="24px" /> </button>
+        </div>
+      {:else}
+        <div class="skeleton h-8 w-full"></div>
+      {/if}
     </div>
   </main>
 </section>
