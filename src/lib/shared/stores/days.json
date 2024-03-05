@@ -71,7 +71,7 @@
     "title": "Morse Mischief",
     "description": "A morse code translator to help Santa communicate over long distance with his top reindeer trainer.",
     "progress": {
-      "code": 75,
+      "code": 100,
       "styling-desktop": 100,
       "styling-mobile": 100
     }

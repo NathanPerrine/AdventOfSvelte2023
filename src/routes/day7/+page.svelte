@@ -32,18 +32,45 @@
     ' ': ' ', '?': '..--..', '!': '-.-.--', '.': '.-.-.-', ',':'--..--', ';': '-.-.-.', ':': '---...', '+': '.-.-.', '-': '-....-', '/': '-..-.', '=': '-...-'
   }
 
-
-  let userSentence: string
+  let userEngSentence: string
   let morseCodeOutput: string = ''
+  let translateType: 'eng' | 'morse' = 'eng'
+  let userMorseSentence: string
+  let englishOutput: string = ''
 
-  function updateMorseCode(){
+  function updateMorseCodeOutput(){
     morseCodeOutput = ''
-    for (const char of userSentence) {
+    for (const char of userEngSentence) {
       if (char != ' '){
         morseCodeOutput += morseCode[char.toLowerCase()] + ' ';
       } else morseCodeOutput += ' ';
     }
   }
+
+  function swapTranslate() {
+    if (translateType === 'eng') {
+      translateType = 'morse'
+    } else if (translateType === 'morse') {
+      translateType = 'eng'
+    }
+  }
+
+  function updateEnglishOutput() {
+    englishOutput = ''
+    userMorseSentence.split("   ").forEach((morseCodeWord) => {
+      morseCodeWord.split(' ').forEach((morseCodeLetter) => {
+        if (morseCodeLetter != ''){
+          englishOutput += getKeyByValue(morseCode, morseCodeLetter)
+        }
+      })
+      englishOutput += ' '
+    })
+  }
+
+  function getKeyByValue(object: morseCodeInterface, value: string) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+
 
   const FREQUENCY = 440;
   const DOT_TIME = 60;
@@ -111,7 +138,6 @@
       }
     }
 
-
   }
   function stop() {
     stopBeeps = true
@@ -125,22 +151,45 @@
   <main class="mt-4">
     <div class="w-11/12 sm:w-1/2 p-4 border border-primary rounded-md mx-auto flex flex-col">
       <h2 class="text-xl">Enter your message below:</h2>
-      <input type="text" placeholder="Close the gate" bind:value={userSentence} on:input={updateMorseCode} class="my-2 input input-bordered w-full max-w-xs" />
-      <div class="divider divider-accent divider-start">Output &darr;</div>
-      <p class="text-xl">
-        {#if morseCodeOutput == ''}
-          Enter a sentence above to translate it into morse code!
-        {:else}
-          {morseCodeOutput}
+
+      <div class="flex flex-row">
+        {#if translateType === 'eng'}
+          <input type="text" placeholder="Close the gate" bind:value={userEngSentence} on:input={updateMorseCodeOutput} class="my-2 input input-bordered w-full max-w-xs" />
+        {:else if translateType === 'morse'}
+          <input type="text" placeholder="-.-. .-.. --- ... . - .... . --. .- - ." bind:value={userMorseSentence} on:input={updateEnglishOutput} class="my-2 input input-bordered w-full max-w-xs" />
         {/if}
-      </p>
-      {#if audioContextInitialized}
-        <div class="flex flex-wrap">
-          <button class="btn btn-sm btn-success m-2" on:click={play}>Play <Icon icon="bx:play" width="24px" /> </button>
-          <button class="btn btn-sm btn-warning m-2" on:click={stop}>Stop <Icon icon="icomoon-free:stop" width="24px" /> </button>
-        </div>
-      {:else}
-        <div class="skeleton h-8 w-full"></div>
+        <button class="btn btn-secondary btn-sm self-center mx-2" on:click={swapTranslate}> <Icon icon="iconamoon:swap" width="24px"></Icon> </button>
+      </div>
+
+
+      <div class="divider divider-accent divider-start">Output &darr;</div>
+      {#if translateType === 'eng'}
+        <p class="text-xl">
+          {#if morseCodeOutput == ''}
+            Enter a sentence above to translate it into morse code!
+          {:else}
+            {morseCodeOutput}
+          {/if}
+        </p>
+        {#if audioContextInitialized}
+          <div class="flex flex-wrap">
+            <button class="btn btn-sm btn-success m-2" on:click={play}>Play <Icon icon="bx:play" width="24px" /> </button>
+            <button class="btn btn-sm btn-warning m-2" on:click={stop}>Stop <Icon icon="icomoon-free:stop" width="24px" /> </button>
+          </div>
+        {:else}
+          <div class="skeleton h-8 w-full"></div>
+        {/if}
+      {:else if translateType === 'morse'}
+        {#if englishOutput == ''}
+          <p class="text-xl">
+            Enter morse code above to translate it into english!
+          </p>
+          <p>Use three spaces to break words.</p>
+          {:else}
+          <p class="text-xl">
+            {englishOutput}
+          </p>
+          {/if}
       {/if}
     </div>
   </main>
