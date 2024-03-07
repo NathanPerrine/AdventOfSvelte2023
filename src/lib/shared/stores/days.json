@@ -80,11 +80,11 @@
     "day": "Day 8",
     "href": "/day8",
     "title": "Santa's Mysterious Deck of Doubles",
-    "description": "Santa's Favorite Card Game",
+    "description": "Santa's Favorite match 2 Card Game",
     "progress": {
-      "code": 0,
-      "styling-desktop": 0,
-      "styling-mobile": 0
+      "code": 95,
+      "styling-desktop": 90,
+      "styling-mobile": 90
     }
   },
   {
