@@ -82,9 +82,9 @@
     "title": "Santa's Mysterious Deck of Doubles",
     "description": "Santa's Favorite match 2 Card Game",
     "progress": {
-      "code": 95,
-      "styling-desktop": 90,
-      "styling-mobile": 90
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
     }
   },
   {
