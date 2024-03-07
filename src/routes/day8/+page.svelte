@@ -5,6 +5,7 @@
 
 	onMount(() => {
 		generateDeck();
+    generatePlayers();
 	});
 
 	type Card = {
@@ -79,8 +80,14 @@
 				selectedCard2.matched = true;
 				matchedCards++;
 
+        // Add cards + score to current player
+        players[currentPlayer-1].score += selectedCard1.value
+        players[currentPlayer-1].cards.push(selectedCard1)
+        players[currentPlayer-1].cards.push(selectedCard2)
+
 				if (matchedCards == uniqueCards) {
 					console.log('winner!');
+          winner = players.reduce((currentWinner, player) => currentWinner.score > player.score ? currentWinner : player)
 				}
 				resetSelectedCards();
 			} else {
@@ -101,6 +108,10 @@
 				selectedCard2 = null;
 				cards = cards;
 			}
+
+      if (currentPlayer < playerCount) {
+        currentPlayer++
+      } else currentPlayer = 1
 		}
 	}
 
@@ -108,8 +119,34 @@
 		selectedCard1 = null;
 		selectedCard2 = null;
 		matchedCards = 0;
+    currentPlayer = 1;
+    winner = null;
 		generateDeck();
+    generatePlayers();
 	}
+  type Player = {
+    id: number,
+    score: number,
+    cards: Card[]
+  }
+  let playerCount = 2
+  let players: Player[] = []
+  let currentPlayer: 1 | 2 = 1
+  let winner: Player | null = null
+
+  function generatePlayers() {
+    players = []
+    for (let step = 0; step < playerCount; step++){
+      let newPlayer: Player = {
+        id: step+1,
+        score: 0,
+        cards: []
+      }
+      players.push(newPlayer)
+      players = players
+    }
+  }
+
 </script>
 
 <section>
@@ -128,8 +165,46 @@
 					{/each}
 				</select>
 			</div>
-			<button class="btn btn-warning btn-sm" on:click={reset}>Reset</button>
+			<button class="btn btn-warning btn-sm self-center" on:click={reset}>Reset</button>
 		</div>
+
+    <!-- Players -->
+    <div class="flex flex-wrap justify-around w-11/12 mx-auto">
+      <!-- Player 1 -->
+      {#each players as player, i (player.id) }
+        <div>
+          <h2 class="text-xl font-bold">Player {i+1}</h2>
+          <div class="flex flex-wrap">
+            <div id="cardstack" class="w-36 h-52 border border-accent m-1">
+              <div class="stack">
+                {#each player.cards as card}
+                  <img src={card.img} alt={card.value.toString()}/>
+                {/each}
+              </div>
+            </div>
+            <div id="scorecard">
+              <div>
+                <h2 class="text-lg font-bold">Score:</h2>
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold">{player.score}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <!-- Current Turn -->
+    <div class="flex flex-wrap justify-center">
+      <h2 class="text-lg font-bold">Current Turn: Player {currentPlayer}</h2>
+    </div>
+    <!-- Winner -->
+    <div class="flex flex-wrap justify-center">
+      {#if winner}
+        <h1 class="text-2xl font-bold">Congrats Player {winner.id}</h1>
+      {/if}
+    </div>
 
 		<!-- main game -->
 		<div class="grid justify-center">
