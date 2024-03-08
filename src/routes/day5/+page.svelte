@@ -144,7 +144,8 @@
 				on:click={sortElfsByWrap}>Sort: <br /> Wrap Task Time</button
 			>
 		</div>
-		{#each filteredElfs as elf (elf.name)}
+    <div class="flex flex-col sm:flex-row flex-wrap w-full justify-center items-center sm:justify-around">
+      {#each filteredElfs as elf (elf.name)}
 			<div
 				class="card w-56 bg-base-200 border border-secondary m-2"
 				in:receive={{ key: elf.name }}
@@ -201,6 +202,7 @@
 					</div>
 				</div>
 			</div>
-		{/each}
+		  {/each}
+  </div>
   </main>
 </section>
