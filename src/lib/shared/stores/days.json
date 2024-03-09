@@ -91,9 +91,9 @@
     "day": "Day 9",
     "href": "/day9",
     "title": "Santa's Final Countdown",
-    "description": "A countdown timer to midnight on Christmas Eve",
+    "description": "A festive countdown timer to midnight on Christmas Eve",
     "progress": {
-      "code": 0,
+      "code": 100,
       "styling-desktop": 100,
       "styling-mobile": 100
     }
@@ -104,9 +104,9 @@
     "title": "Pop-up! Spreading the holiday cheer",
     "description": "A pop up message from Santa wishing holiday cheer.",
     "progress": {
-      "code": 100,
-      "styling-desktop": 100,
-      "styling-mobile": 100
+      "code": 0,
+      "styling-desktop": 0,
+      "styling-mobile": 0
     }
   }
 ]
