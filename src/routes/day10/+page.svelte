@@ -3,7 +3,7 @@
 	import { slide } from 'svelte/transition';
   import { santaPopup } from './SantaPopUp'
 
-  let popup = santaPopup()
+  let popup = santaPopup(10, "Message from Santa")
 
   let count = 10
   $: count
