@@ -104,9 +104,20 @@
     "title": "Pop-up! Spreading the holiday cheer",
     "description": "A pop up message from Santa wishing holiday cheer.",
     "progress": {
-      "code": 0,
-      "styling-desktop": 0,
-      "styling-mobile": 0
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
+    }
+  },
+  {
+    "day": "Day 11",
+    "href": "/day11",
+    "title": "Tinsel Transformers",
+    "description": "Enter your human name and get your Elf name in return!",
+    "progress": {
+      "code": 100,
+      "styling-desktop": 100,
+      "styling-mobile": 100
     }
   }
 ]
