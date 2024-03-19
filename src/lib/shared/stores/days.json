@@ -119,5 +119,16 @@
       "styling-desktop": 100,
       "styling-mobile": 100
     }
+  },
+  {
+    "day": "Day 12",
+    "href": "/day12",
+    "title": "Greetings and salutations",
+    "description": "An interactive canvas for building christmas cards with stickers!",
+    "progress": {
+      "code": 50,
+      "styling-desktop": 50,
+      "styling-mobile": 0
+    }
   }
 ]

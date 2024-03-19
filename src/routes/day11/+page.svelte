@@ -34,7 +34,6 @@
       // try to find name based on length first
       let possibleLastNamesLength = lastNames.filter((lastName) => lastName.length == realFirstName.length)
       if (possibleLastNamesLength.length != 0) {
-        console.log('test')
         // try to find name based on first letter
         let possibleLastNamesLetter = possibleLastNamesLength.filter((lastName) => lastName[0] == realLastName[0].toUpperCase())
         if (possibleLastNamesLetter.length != 0) {
