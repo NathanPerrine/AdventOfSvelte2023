@@ -128,7 +128,7 @@
     "progress": {
       "code": 50,
       "styling-desktop": 50,
-      "styling-mobile": 0
+      "styling-mobile": 10
     }
   }
 ]
